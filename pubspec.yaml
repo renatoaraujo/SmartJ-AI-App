@@ -10,7 +10,8 @@ dependencies:
   flutter:
     sdk: flutter
   medcorder_audio:
-  font_awesome_flutter: ^8.5.0
+  flutter_statusbarcolor: ^0.2.3
+  fancy_bottom_navigation: ^0.3.2
 
 dev_dependencies:
   flutter_test:

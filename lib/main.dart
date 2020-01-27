@@ -1,13 +1,20 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
-import 'package:mobile_app/states/recorder.dart';
+import 'package:flutter_statusbarcolor/flutter_statusbarcolor.dart';
+import 'package:mobile_app/Controller/HomePage.dart';
+import 'package:mobile_app/Controller/Recorder.dart';
+import 'package:mobile_app/Helper/Colors.dart';
 
 void main() {
-  runApp(new App());
-}
+  runApp(new MaterialApp(
+    home: HomePage(),
+    routes: <String, WidgetBuilder>{
+      "/recorder" : (BuildContext context)=> new RecorderApp(),
+      //add more routes here
+    },
+  ));
 
-class App extends StatefulWidget {
-  @override
-  Recorder createState() => new Recorder();
+  FlutterStatusbarcolor.setStatusBarColor(CustomColors.black0);
+  FlutterStatusbarcolor.setStatusBarWhiteForeground(true);
+  FlutterStatusbarcolor.setNavigationBarColor(CustomColors.black0);
+  FlutterStatusbarcolor.setNavigationBarWhiteForeground(true);
 }
