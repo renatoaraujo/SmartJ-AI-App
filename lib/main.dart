@@ -6,6 +6,19 @@ import 'package:permission_handler/permission_handler.dart';
 
 void main() async {
 
+  WidgetsFlutterBinding.ensureInitialized();
+
+  PermissionStatus permission = await PermissionHandler().checkPermissionStatus(PermissionGroup.microphone);
+  if (permission.toString() != 'PermissionStatus.granted') {
+    await PermissionHandler().requestPermissions([
+      PermissionGroup.microphone
+    ]);
+  }
+
+  await FlutterStatusbarcolor.setStatusBarColor(CustomColors.black0);
+  await FlutterStatusbarcolor.setStatusBarWhiteForeground(true);
+  await FlutterStatusbarcolor.setNavigationBarColor(CustomColors.black0);
+  await FlutterStatusbarcolor.setNavigationBarWhiteForeground(true);
 
   runApp(new MaterialApp(
     title: 'Flutter Demo',
@@ -14,20 +27,4 @@ void main() async {
     ),
     home: BasePage()
   ));
-
-  WidgetsFlutterBinding.ensureInitialized();
-
-
-  PermissionStatus permission = await PermissionHandler().checkPermissionStatus(PermissionGroup.microphone);
-
-  if (permission.toString() != 'PermissionStatus.granted') {
-    Map<PermissionGroup, PermissionStatus> permissions = await PermissionHandler().requestPermissions([
-      PermissionGroup.microphone
-    ]);
-  }
-
-  FlutterStatusbarcolor.setStatusBarColor(CustomColors.black0);
-  FlutterStatusbarcolor.setStatusBarWhiteForeground(true);
-  FlutterStatusbarcolor.setNavigationBarColor(CustomColors.black0);
-  FlutterStatusbarcolor.setNavigationBarWhiteForeground(true);
 }
