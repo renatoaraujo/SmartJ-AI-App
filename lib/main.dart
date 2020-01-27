@@ -1,17 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_statusbarcolor/flutter_statusbarcolor.dart';
-import 'package:mobile_app/Controller/HomePage.dart';
-import 'package:mobile_app/Controller/Recorder.dart';
+import 'package:mobile_app/Controller/BasePage.dart';
 import 'package:mobile_app/Helper/Colors.dart';
+import 'package:permission_handler/permission_handler.dart';
 
-void main() {
+void main() async {
+
+
   runApp(new MaterialApp(
-    home: HomePage(),
-    routes: <String, WidgetBuilder>{
-      "/recorder" : (BuildContext context)=> new RecorderApp(),
-      //add more routes here
-    },
+    title: 'Flutter Demo',
+    theme: ThemeData(
+      primarySwatch: CustomColors.lightBlack3,
+    ),
+    home: BasePage()
   ));
+
+  WidgetsFlutterBinding.ensureInitialized();
+
+
+  PermissionStatus permission = await PermissionHandler().checkPermissionStatus(PermissionGroup.microphone);
+
+  if (permission.toString() != 'PermissionStatus.granted') {
+    Map<PermissionGroup, PermissionStatus> permissions = await PermissionHandler().requestPermissions([
+      PermissionGroup.microphone
+    ]);
+  }
 
   FlutterStatusbarcolor.setStatusBarColor(CustomColors.black0);
   FlutterStatusbarcolor.setStatusBarWhiteForeground(true);

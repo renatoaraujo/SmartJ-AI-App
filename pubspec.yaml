@@ -9,9 +9,10 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  medcorder_audio:
+  medcorder_audio: ^0.0.5
   flutter_statusbarcolor: ^0.2.3
   fancy_bottom_navigation: ^0.3.2
+  permission_handler: ^4.2.0+hotfix.2
 
 dev_dependencies:
   flutter_test:
